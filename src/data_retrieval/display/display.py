@@ -1,14 +1,11 @@
 from datetime import datetime
 
-from src.data_retrieval.database_reader.database import (
+from database_reader.database import (
     get_current_version,
     get_latest_modification_date,
     store_event_in_db,
 )
-from src.data_retrieval.reader.gdacs_reader import (
-    CustomGDACSAPIError,
-    CustomGDACSAPIReader,
-)
+from reader.gdacs_reader import CustomGDACSAPIError, CustomGDACSAPIReader
 
 
 def display_event_details(rss_events):

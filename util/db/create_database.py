@@ -3,7 +3,7 @@ import sqlite3
 
 db_dir = os.path.dirname(os.path.abspath(__file__))
 
-database_path = os.path.join(db_dir, "..", "..", "data", "gdacs.db")
+database_path = os.path.join(db_dir, "..", "..", "data", "gdacs_events.db")
 
 
 def create_database():
