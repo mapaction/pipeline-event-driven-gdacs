@@ -28,6 +28,10 @@ database:
 	@echo "Creating database.."
 	@poetry run python util/util.py
 
+gdacs_reader:
+	@echo "Running gdacs reader.."
+	@poetry run python src/data_retrieval/main.py
+
 help:
 	@echo "Available make targets:"
 	@echo " make help           - Print help"
