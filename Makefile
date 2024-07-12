@@ -24,6 +24,9 @@ clean:
 	@rm -rf .venv
 	@poetry env remove --all
 
+database:
+	@echo "Creating database.."
+	@poetry run python util/util.py
 
 help:
 	@echo "Available make targets:"
@@ -33,3 +36,4 @@ help:
 	@echo " make test           - Run unit tests"
 	@echo " make lint           - Run lint tests"
 	@echo " make clean          - Remove .venv"
+	@echo " make database       - Create database"
