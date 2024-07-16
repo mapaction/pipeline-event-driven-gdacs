@@ -32,6 +32,10 @@ gdacs_reader:
 	@echo "Running gdacs reader.."
 	@poetry run python src/data_retrieval/main.py
 
+lab:
+	@echo "Running jupyter lab.."
+	@poetry run jupyter lab
+
 help:
 	@echo "Available make targets:"
 	@echo " make help           - Print help"
@@ -41,3 +45,5 @@ help:
 	@echo " make lint           - Run lint tests"
 	@echo " make clean          - Remove .venv"
 	@echo " make database       - Create database"
+	@echo " make gdacs_reader   - Run gdacs reader"
+	@echo " make lab            - Run jupyter lab"
