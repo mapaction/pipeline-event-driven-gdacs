@@ -64,6 +64,7 @@ tzdata = "2024.1"
 urllib3 = "2.2.2"
 wcwidth = "0.2.13"
 xmltodict = "0.13.0"
+jupyterlab = "^4.2.3"
 
 
 [tool.poetry.group.dev.dependencies]
