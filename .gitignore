@@ -9,6 +9,12 @@ __pycache__/
 # data dir
 data/
 
+# static data
+static_data/
+
+# out extension
+*.out
+
 # Distribution / packaging
 .Python
 build/
