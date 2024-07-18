@@ -1,15 +1,13 @@
 .PHONY: all
-all = help
+all: help
 
 .venv:
 	@echo "Installing project dependencies.."
 	@poetry install --no-root
 
-
 hooks:
 	@echo "Adding pre-commit hooks.."
 	@poetry run pre-commit install
-	
 
 test:
 	@echo "Running unit tests.."
@@ -32,13 +30,13 @@ gdacs_reader:
 	@echo "Running gdacs reader.."
 	@poetry run python src/data_retrieval/retriever.py
 
+monitor:
+	@echo "Running monitor.."
+	@poetry run python src/pipeline_trigger/monitor.py
+
 lab:
 	@echo "Running jupyter lab.."
 	@poetry run jupyter lab
-
-monitor:
-	@echo "Running monitor.."
-	@poetry run python src/monitor/monitor.py
 
 event:
 	@echo "Running gdacs_reader and monitor in background.."
@@ -60,5 +58,7 @@ help:
 	@echo " make clean          - Remove .venv"
 	@echo " make database       - Create database"
 	@echo " make gdacs_reader   - Run gdacs reader"
-	@echo " make lab            - Run jupyter lab"
 	@echo " make monitor        - Run monitor"
+	@echo " make event          - Run gdacs_reader and monitor in background"
+	@echo " make no_event       - Stop gdacs_reader and monitor"
+	@echo " make lab            - Run jupyter lab"
