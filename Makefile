@@ -40,6 +40,16 @@ monitor:
 	@echo "Running monitor.."
 	@poetry run python src/monitor/monitor.py
 
+event:
+	@echo "Running gdacs_reader and monitor in background.."
+	@make gdacs_reader &
+	@make monitor &
+
+no_event:
+	@echo "Stopping gdacs_reader and monitor.."
+	@pkill -f 'python src/data_retrieval/retriever.py'
+	@pkill -f 'python src/pipeline_trigger/monitor.py'
+
 help:
 	@echo "Available make targets:"
 	@echo " make help           - Print help"
@@ -51,3 +61,4 @@ help:
 	@echo " make database       - Create database"
 	@echo " make gdacs_reader   - Run gdacs reader"
 	@echo " make lab            - Run jupyter lab"
+	@echo " make monitor        - Run monitor"
