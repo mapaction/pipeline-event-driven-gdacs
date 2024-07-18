@@ -30,7 +30,7 @@ database:
 
 gdacs_reader:
 	@echo "Running gdacs reader.."
-	@poetry run python src/data_retrieval/main.py
+	@poetry run python src/data_retrieval/retriever.py
 
 lab:
 	@echo "Running jupyter lab.."
