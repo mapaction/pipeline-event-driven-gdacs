@@ -26,13 +26,17 @@ database:
 	@echo "Creating database.."
 	@poetry run python util/util.py
 
+reader:
+	@echo "Running reader.."
+	@poetry run python src/data_retrieval/retriever.py
+
 gdacs_reader:
 	@echo "Running gdacs reader.."
-	@poetry run python src/data_retrieval/retriever.py
+	@nohup poetry run python src/data_retrieval/retriever.py > gdacs_reader.log 2>&1 & echo $$! > gdacs_reader.pid
 
 monitor:
 	@echo "Running monitor.."
-	@poetry run python src/pipeline_trigger/monitor.py
+	@nohup poetry run python src/pipeline_trigger/monitor.py > monitor.log 2>&1 & echo $$! > monitor.pid
 
 lab:
 	@echo "Running jupyter lab.."
@@ -40,13 +44,14 @@ lab:
 
 event:
 	@echo "Running gdacs_reader and monitor in background.."
-	@make gdacs_reader &
-	@make monitor &
+	@make gdacs_reader
+	@make monitor
 
 no_event:
 	@echo "Stopping gdacs_reader and monitor.."
-	@pkill -f 'python src/data_retrieval/retriever.py'
-	@pkill -f 'python src/pipeline_trigger/monitor.py'
+	@-kill `cat gdacs_reader.pid` 2>/dev/null || true
+	@-kill `cat monitor.pid` 2>/dev/null || true
+	@rm -f gdacs_reader.pid monitor.pid
 
 help:
 	@echo "Available make targets:"

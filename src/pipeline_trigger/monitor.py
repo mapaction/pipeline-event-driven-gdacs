@@ -1,14 +1,9 @@
 import os
-import sys
 import time
 
 from dotenv import load_dotenv
-
-from pipeline_trigger.data_retrieval import get_new_entries
-from pipeline_trigger.process_entries import process_new_entries
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
+from info_retrieval.data_retrieval import get_new_entries
+from processor.process_entries import process_new_entries
 
 load_dotenv()
 

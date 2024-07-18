@@ -1,15 +1,9 @@
-import os
-import sys
 import time
 
-from pipeline_trigger.activate_dag import activate_dag
-from pipeline_trigger.check_status import check_dag_status
-from pipeline_trigger.trigger_dag import trigger_dag
+from activate.activate_dag import activate_dag
 from static_data.countires_iso import COUNTRIES
-
-sys.path.append(
-    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-)  # noqa
+from status.check_status import check_dag_status
+from trigger.trigger_dag import trigger_dag
 
 
 def process_new_entries(entries, username, password):
