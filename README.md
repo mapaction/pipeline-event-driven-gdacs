@@ -40,3 +40,31 @@ cd pipeline-event-driven-gdacs
 ```bash
 make .venv hooks
 ```
+
+### Database
+
+Run inside the Project's dir
+
+```bash
+mkdir -p data
+```
+
+and then,
+
+```bash
+make database
+```
+
+## **To run the Event-Driven Programme**
+
+### Start-Event
+
+```bash
+make event
+```
+
+### Stop-Event
+
+```bash
+make no_event
+```
