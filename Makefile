@@ -36,6 +36,10 @@ gdacs_reader:
 
 monitor:
 	@echo "Running monitor.."
+	@poetry run python src/pipeline_trigger/monitor.py
+
+gdacs_monitor:
+	@echo "Running monitor.."
 	@nohup poetry run python src/pipeline_trigger/monitor.py > monitor.log 2>&1 & echo $$! > monitor.pid
 
 lab:
@@ -45,7 +49,7 @@ lab:
 event:
 	@echo "Running gdacs_reader and monitor in background.."
 	@make gdacs_reader
-	@make monitor
+	@make gdacs_monitor
 
 no_event:
 	@echo "Stopping gdacs_reader and monitor.."
@@ -62,8 +66,10 @@ help:
 	@echo " make lint           - Run lint tests"
 	@echo " make clean          - Remove .venv"
 	@echo " make database       - Create database"
+	@echo " make reader         - Run reader"
 	@echo " make gdacs_reader   - Run gdacs reader"
 	@echo " make monitor        - Run monitor"
+	@echo " make gdacs_monitor  - Run gdacs monitor"
 	@echo " make event          - Run gdacs_reader and monitor in background"
 	@echo " make no_event       - Stop gdacs_reader and monitor"
 	@echo " make lab            - Run jupyter lab"
