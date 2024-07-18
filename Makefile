@@ -36,6 +36,10 @@ lab:
 	@echo "Running jupyter lab.."
 	@poetry run jupyter lab
 
+monitor:
+	@echo "Running monitor.."
+	@poetry run python src/monitor/monitor.py
+
 help:
 	@echo "Available make targets:"
 	@echo " make help           - Print help"
