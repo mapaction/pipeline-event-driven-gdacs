@@ -1,9 +1,10 @@
 import time
 
 from activate.activate_dag import activate_dag
-from static_data.countires_iso import COUNTRIES
 from status.check_status import check_dag_status
 from trigger.trigger_dag import trigger_dag
+
+from src.pipeline_trigger.static_data.countries_iso import COUNTRIES
 
 
 def process_new_entries(entries, username, password):
