@@ -10,7 +10,7 @@ __pycache__/
 data/
 
 # static data
-static_data/
+#static_data/
 
 # out extension
 *.out

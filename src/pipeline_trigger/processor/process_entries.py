@@ -1,9 +1,13 @@
 import time
 
 from activate.activate_dag import activate_dag
-from static_data.countires_iso import COUNTRIES
 from status.check_status import check_dag_status
 from trigger.trigger_dag import trigger_dag
+
+from src.pipeline_trigger.static_data.countries_iso import COUNTRIES
+from src.pipeline_trigger.static_data.excluded_countries import (  # noqa
+    EXCLUDED_COUNTRIES,
+)
 
 
 def process_new_entries(entries, username, password):
@@ -15,6 +19,12 @@ def process_new_entries(entries, username, password):
                 country_name = name
                 break
         if country_name:
+            if country_name in EXCLUDED_COUNTRIES:
+                print(
+                    f"Country {country_name} is in the excluded list. Skipping..."  # noqa
+                )
+                continue
+
             dag_id = f"dynamic_generated_dag_{country_name}"
             if activate_dag(dag_id, username, password) and trigger_dag(
                 dag_id, username, password
