@@ -10,7 +10,9 @@ class CustomGDACSAPIReader:
         url = f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={event_type}&eventid={event_id}"  # noqa E501
         response = requests.get(url)
         if response.status_code != 200:
-            raise CustomGDACSAPIError(
-                f"API Error: Failed to fetch details for event ID {event_id}."
+            error_message = (
+                f"API Error: Failed to fetch details for event ID {event_id}. "
+                f"Status Code: {response.status_code}, Response: {response.text}"  # noqa E501
             )
+            raise CustomGDACSAPIError(error_message)
         return response.json()
